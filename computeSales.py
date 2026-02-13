@@ -1,9 +1,14 @@
+"Programa para calcular el costo de todas la ventas en el archivo JSON."
+
+# pylint: disable=invalid-name,redefined-outer-name
+
 import sys
 import json
 import time
 
 
 def archivo_json(archivo_path):
+    """Leer archivos JSON."""
     try:
         with open(archivo_path, 'r', encoding='utf-8') as archivo:
             datos = json.load(archivo)
@@ -17,6 +22,7 @@ def archivo_json(archivo_path):
 
 
 def convertir_a_diccionario(precios_datos):
+    """Convertir la lista de productos y precios en un diccionario."""
     dic_precios = {}
 
     for objeto in precios_datos:
@@ -31,6 +37,7 @@ def convertir_a_diccionario(precios_datos):
 
 
 def ventas_totales(productos, ventas_datos):
+    """Calcular la venta total y la venta de cada producto."""
 
     costo_total = 0.0
     cantidad_total = 0
@@ -61,8 +68,7 @@ def ventas_totales(productos, ventas_datos):
         except TypeError:
             print(f"Línea {elemento}: Formato inválido.")
 
-    for producto in dic_ventas:
-        datos = dic_ventas[producto]
+    for producto, datos in dic_ventas.items():
         cantidad = datos['cantidad']
         total = datos['costo']
         costo_individual = datos['costo_individual']
