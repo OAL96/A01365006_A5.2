@@ -47,7 +47,7 @@ def ventas_totales(productos, ventas_datos):
     for elemento, venta in enumerate(ventas_datos, start=1):
         try:
             producto = venta.get('Product')
-            cantidad = abs(venta.get('Quantity'))
+            cantidad = venta.get('Quantity')
 
             if producto in productos:
                 costo = productos[producto] * cantidad
